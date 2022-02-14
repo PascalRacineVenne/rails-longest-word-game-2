@@ -15,7 +15,14 @@ class GamesController < ApplicationController
     # create an instance variable with the answer.upcse
     @word = (params[:word] || '').upcase
     @included = included?(@word, @letters)
-    @is_english = is_english?(@word)
+    # @is_english = is_english?(@word)
+    data = fetch(@word)
+    @is_english = data['found']
+    if @is_english && @included
+      @points =  data['length'] ** 2
+    else
+      @points = 0
+    end
   end
 
   def included?(word, letters)
@@ -27,11 +34,16 @@ class GamesController < ApplicationController
     end
   end
 
-  def is_english?(word)
+  # def is_english?(word)
+  #   url = "https://wagon-dictionary.herokuapp.com/#{word}"
+  #   response = URI.open(url).read
+  #   data = JSON.parse(response)
+  #   data['found']
+  # end
+
+  def fetch(word)
     url = "https://wagon-dictionary.herokuapp.com/#{word}"
     response = URI.open(url).read
     data = JSON.parse(response)
-    data['found']
   end
-
 end

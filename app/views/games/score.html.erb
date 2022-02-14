@@ -11,5 +11,8 @@
   <% else %>
     <p> Sorry but <strong><%= @word %></strong> cannot be built out of : [ <%= @letters.join(", ") %> ]</p>
   <% end %>
-  <%= link_to 'Play Again', new_path, class: "btn-link" %>  
+  <div class="score">
+    <h2 class="points">Points: <%= @points %></h2>
+    <%= link_to 'Play Again', new_path, class: "btn-link" %>  
+  </div>
  </div> 
