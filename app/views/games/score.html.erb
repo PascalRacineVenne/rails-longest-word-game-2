@@ -6,10 +6,11 @@
     <% if @is_english %>
       <p><strong>Congratulations!</strong> <%= @word.upcase %> is an English word</p>
     <% else %>
-      <p>Sorry but <%= @word %> doesn't seem to be a valid english word...</p>
+      <p>Sorry but <%= @word.upcase %> doesn't seem to be a valid english word...</p>
     <% end %>
   <% else %>
-    <p> Sorry but <strong><%= @word %></strong> cannot be built out of : [ <%= @letters.join(", ") %> ]</p>
+
+    <p> Sorry but <strong><%= @word.upcase %></strong> cannot be built out of these letters.</p>
   <% end %>
   <div class="score">
     <h2 class="points">Points: <%= @points %></h2>
